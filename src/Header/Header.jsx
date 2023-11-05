@@ -1,8 +1,19 @@
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.png'
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import img from '../assets/user.png'
 
 
 const Header = () => {
+    const {user,logOut} =useContext(AuthContext);
+    console.log(user)
+
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
     const navItems =<>
     <li><Link to='/'>Home</Link></li>
     <li><Link to='/about'> Available Foods</Link></li>
@@ -33,7 +44,31 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
-  <Link to='/login'><button className="btn bg-amber-500 text-white btn-warning">Login</button></Link>
+    
+  {
+                    user ?
+                        <>
+                        <details className="collapse bg-base-100 ">
+  <summary className="collapse-title   mt-5"><div className="w-[70px] ml-10 rounded-full">
+<img src={img} />
+
+</div></summary>
+  <div className="collapse-content"> 
+  <div className="flex flex-col">
+
+<button onClick={handleSignOut} className="btn bg-amber-600 text-white mt-7">Log Out</button>
+{user?.displayName && <p> {user.displayName}</p>}
+<p className="md:w-[200px] text-amber-400 font-extrabold ml-7">{user.email}</p>
+</div>
+  </div>
+</details>
+                        
+                
+                        </>
+                        :
+                        <Link to='/login'><button className="btn bg-amber-500 text-white btn-warning">Login</button></Link>
+                }
+  
   </div>
 </div>
         </div>
