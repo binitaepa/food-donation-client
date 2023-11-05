@@ -71,15 +71,22 @@ const navigate=useNavigate();
                                 <input className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </form>
+                        {
+                            registerError && <p className="text-red-700">{registerError}</p>
+                        }
+                        {
+                            success && <p className="text-green-600">{success}</p>
+                        }
                         <p className='my-4 text-center'>New to Nourish Neighbor <Link className='text-orange-600 font-bold' to="/registration">Register Now</Link> </p>
 
                         <div className='p-4 space-y-3 mb-6'>
-            <h2 className="text-3xl">Login With</h2>
-                <button onClick={handleGoogle} className="btn btn-outline w-full text-white bg-pink-500">
+                        <h2 className="text-3xl items-center flex justify-center">Or</h2>
+            <h2 className="text-3xl flex justify-center items-center">Login With</h2>
+                <button onClick={handleGoogle} className="btn btn-outline w-full text-white bg-amber-500">
                     <FaGoogle></FaGoogle>
                     Google
                 </button>
-                <h2 className="text-3xl items-center flex justify-center">OR</h2>
+                
             </div>
 
 
