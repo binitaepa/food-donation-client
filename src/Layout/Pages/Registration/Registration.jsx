@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import img from '../../../assets/undraw_mobile_payments_re_7udl.svg'
+import { LinkIcon } from "@chakra-ui/icons";
 
 const Registration = () => {
     return (
@@ -34,7 +35,7 @@ const Registration = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Photo URL</span>
+                                    <span className="label-text ">Photo URL<LinkIcon className="text-black ml-2"></LinkIcon></span>
                                 </label>
                                 <input type="photo" name='photo' placeholder="PhotoURL" className="input input-bordered" />
                             </div>
