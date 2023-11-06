@@ -24,7 +24,7 @@ const AVailablefoodcard = ({feature}) => {
   </div>
 </div></div>
                 <div className="card-actions items-center">
-                    <Link to={`/checkout/${_id}`}>
+                    <Link to={`/fooddetail/${_id}`}>
                         <button className="btn bg-amber-400 w-full ">View Details <ArrowRightIcon></ArrowRightIcon></button>
                     </Link>
                 </div>

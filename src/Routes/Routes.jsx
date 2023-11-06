@@ -6,6 +6,7 @@ import Registration from "../Layout/Pages/Registration/Registration";
 import Login from "../Layout/Pages/Login/Login";
 import AvailableFood from "../Layout/Pages/AvailableFood/AvailableFood";
 import FoodDetails from "../Layout/Pages/Feature/FoodDetail/FoodDetails";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 const router = createBrowserRouter([
@@ -31,9 +32,9 @@ const router = createBrowserRouter([
  
    },
    {
-    path:'/fooddetails/:id',
-    element:<FoodDetails></FoodDetails>,
-    loader:({params})=>fetch(`http://localhost:5000/feature/${params.id}`)
+    path:'/fooddetail/:id',
+    element:<PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>,
+    loader:()=>fetch('http://localhost:5000/feature')
    }
       ]
     },
