@@ -4,6 +4,8 @@ import Home from "../Layout/Pages/Home/Home";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Registration from "../Layout/Pages/Registration/Registration";
 import Login from "../Layout/Pages/Login/Login";
+import AvailableFood from "../Layout/Pages/AvailableFood/AvailableFood";
+import FoodDetails from "../Layout/Pages/Feature/FoodDetail/FoodDetails";
 
 
 const router = createBrowserRouter([
@@ -22,8 +24,17 @@ const router = createBrowserRouter([
     {
         path:'/login',
         element:<Login></Login>
-    }
+    },
+   {
+    path:'/availablefood',
+    element:<AvailableFood></AvailableFood>
  
+   },
+   {
+    path:'/fooddetails/:id',
+    element:<FoodDetails></FoodDetails>,
+    loader:({params})=>fetch(`http://localhost:5000/feature/${params.id}`)
+   }
       ]
     },
   ]);

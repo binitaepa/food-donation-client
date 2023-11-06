@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import pic from '../../../assets/common-pic.jpg'
 
 
-const FeatureCard = ({feature}) => {
+const AVailablefoodcard = ({feature}) => {
     const {_id,foodName,foodImage,donatorName,foodQuantity,pickupLocation,expiredDateTime,additionalNotes}=feature;
     return (
         <div>
-             <div className="card w-96 bg-amber-200 shadow-xl">
+             <div className="card w-96 bg-gray-200 ">
             <figure className="px-2 pt-2">
                 <img src={foodImage} alt="Shoes" className="rounded-xl h-[240px] w-full" />
             </figure>
@@ -15,7 +15,7 @@ const FeatureCard = ({feature}) => {
                 <h2 className="card-title">{foodName}</h2>
                 <h2 className="font-bold">Food Quantity: {foodQuantity} <br /> <span>Expire date:{expiredDateTime}</span></h2>
                 <p>Location: {pickupLocation}</p>
-                <p className="text-sm">Notes: {additionalNotes}</p>
+                <p>Notes: {additionalNotes}</p>
                 <p className="items-center justify-center flex text-amber-900 border-b-2">DONATED BY</p>
                <div className="flex justify-between"> <p className="text-3xl mt-5 text-orange-500">{donatorName}</p>
                <div className="avatar">
@@ -24,7 +24,7 @@ const FeatureCard = ({feature}) => {
   </div>
 </div></div>
                 <div className="card-actions items-center">
-                    <Link to={`/fooddetail/${_id}`}>
+                    <Link to={`/checkout/${_id}`}>
                         <button className="btn bg-amber-400 w-full ">View Details <ArrowRightIcon></ArrowRightIcon></button>
                     </Link>
                 </div>
@@ -34,4 +34,4 @@ const FeatureCard = ({feature}) => {
     );
 };
 
-export default FeatureCard;
+export default AVailablefoodcard;

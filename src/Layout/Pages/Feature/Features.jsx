@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FeatureCard from "./FeatureCard";
+import { Link } from "react-router-dom";
 
 
 const Features = () => {
@@ -21,6 +22,9 @@ const Features = () => {
            {
                 feature.map(feature=><FeatureCard key={feature._id} feature={feature}></FeatureCard>)
             }
+           </div>
+           <div className="mt-5 align-middle items-center flex justify-center"> 
+            <Link to='/availablefood'><button className="btn btn-warning text-xl bg-amber-300 w-[500px] flex justify-center items-center">Show All</button></Link>
            </div>
         </div>
     );
