@@ -25,7 +25,7 @@ const ManageMyFood = () => {
           });
     }
     , [url]);
-    const handleBookingConfirm = id => {
+    const handleFoodConfirm = id => {
         fetch(`http://localhost:5000/collection/${id}`, {
             method: 'PATCH',
             headers: {
@@ -40,7 +40,7 @@ const ManageMyFood = () => {
                     // update state
                     const remaining = foods.filter(booking => booking._id !== id);
                     const updated = foods.find(booking => booking._id === id);
-                    updated.status = 'confirm'
+                    updated.status = 'Available'
                     const newFood = [updated, ...remaining];
                     setFoods(newFood);
                 }
@@ -66,7 +66,7 @@ const ManageMyFood = () => {
     
     return (
         
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto bg-amber-100 mb-8 w-full">
                 <table className="table w-full">
                     {/* head */}
                     <thead className="text-xl">
@@ -79,8 +79,9 @@ const ManageMyFood = () => {
                             <th>Food Name</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Date</th>
                             <th>Food Status</th>
+                            <th>Date</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -89,7 +90,7 @@ const ManageMyFood = () => {
                                 key={food._id}
                                food={food}
                                 handleDelete={handleDelete}
-                                handleBookingConfirm={handleBookingConfirm}
+                                handleFoodConfirm={handleFoodConfirm}
                             ></FoodRow>)
                         }
                     </tbody>
