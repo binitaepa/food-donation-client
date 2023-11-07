@@ -7,6 +7,7 @@ import Login from "../Layout/Pages/Login/Login";
 import AvailableFood from "../Layout/Pages/AvailableFood/AvailableFood";
 import FoodDetails from "../Layout/Pages/Feature/FoodDetail/FoodDetails";
 import PrivateRoutes from "./PrivateRoutes";
+import AddAFood from "../Layout/Pages/AddAFood/AddAFood";
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     path:'/availablefood',
     element:<AvailableFood></AvailableFood>
  
+   },
+   {
+    path:'/addfood',
+    element:<AddAFood></AddAFood>
    },
    {
     path:'/fooddetail/:id',

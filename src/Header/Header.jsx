@@ -19,7 +19,7 @@ const Header = () => {
     <li><Link to='/availablefood'> Available Foods</Link></li>
    {
     user && <>
-             <li><Link>Add Food</Link></li>
+             <li><Link to='/addfood'>Add Food</Link></li>
 <li><Link>Manage My Foods</Link></li>
 <li><Link>My Food Request</Link></li>
     </>
