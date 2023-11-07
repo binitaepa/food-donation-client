@@ -15,9 +15,14 @@ const PrivateRoutes = ({children}) => {
         <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
       </Box></div>
     }
+    if(user?.email){
+        return children;
+    }
+
         if(user){
             return children;
         }
+
     return <Navigate state={location.pathname} to='/login'></Navigate>
 };
 

@@ -35,7 +35,7 @@ const AvailableFood = () => {
            </div>
            <div >
             <h2 className="text-center mb-10 items-center text-4xl text-amber-400">Added Food</h2>
-            <div className="mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-10">
+            <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-5 mt-10 lg:grid-cols-3 ml-10">
             {
                 addedFood.map(food=><AddFoodShow key={food._id} food={food}></AddFoodShow>)
             }
