@@ -13,7 +13,7 @@ const ManageMyFood = () => {
    
   
    
-    const url=`http://localhost:5000/collection?email=${user?.email}`
+    const url=`https://food-sharing-website-server.vercel.app/collection?email=${user?.email}`
     useEffect(() => {
 
         
@@ -27,7 +27,7 @@ const ManageMyFood = () => {
     }
     , [url]);
     const handleFoodConfirm = id => {
-        fetch(`http://localhost:5000/collection/${id}`, {
+        fetch(`https://food-sharing-website-server.vercel.app/collection/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -59,7 +59,7 @@ const ManageMyFood = () => {
          const proceed =confirm('Are you sure you want to delete?')
             
         if (proceed) {
-            fetch(`http://localhost:5000/collection/${id}`, {
+            fetch(`https://food-sharing-website-server.vercel.app/collection/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

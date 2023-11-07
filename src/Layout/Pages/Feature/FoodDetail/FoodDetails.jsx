@@ -26,7 +26,7 @@ const FoodDetails = () => {
 
       
 
-        fetch(`http://localhost:5000/feature/${foodDetail._id}`, {
+        fetch(`https://food-sharing-website-server.vercel.app/feature/${foodDetail._id}`, {
             method: 'PATCH', 
             headers: {
                 'content-type': 'application/json'

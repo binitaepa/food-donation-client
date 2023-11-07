@@ -12,7 +12,7 @@ const AvailableFood = () => {
 
     const [feature,setFeature]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/feature')
+        fetch('https://food-sharing-website-server.vercel.app/feature')
         .then(res => res.json())
             .then(data => setFeature(data));
     })

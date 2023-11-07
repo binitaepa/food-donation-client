@@ -31,7 +31,7 @@ const router = createBrowserRouter([
    {
     path:'/availablefood',
     element:<AvailableFood></AvailableFood>,
-    loader:()=>fetch('http://localhost:5000/collection')
+    loader:()=>fetch('https://food-sharing-website-server.vercel.app/collection')
  
    },
    {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
    {
     path:'/fooddetail/:id',
     element:<PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>,
-    loader:()=>fetch('http://localhost:5000/feature')
+    loader:()=>fetch('https://food-sharing-website-server.vercel.app/feature')
    },
    {
     path:'/managemyfood',
