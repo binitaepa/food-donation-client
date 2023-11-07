@@ -1,8 +1,53 @@
+import { useContext } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const AddAFood = () => {
-    const handleAddFood=()=>{
-
+    const {user}=useContext(AuthContext);
+    console.log(user.email)
+    const handleAddFood=(event)=>{
+       
+            event.preventDefault();
+    
+            const form = event.target;
+            
+            const photo = form.photo.value;
+            const foodName=form.foodname.value;
+            const name = form.name.value;
+            const quantity = form.Quantity.value;
+            const pickup = form.pickup.value;
+            const date = form.date.value;
+            const description = form.description.value;
+            const email= form.email.value;
+            const donarimage= form.image.value;
+            const foodstatus= form.foodstatus.value;
+           
+    
+            const newFood = { photo, foodName,name, quantity,  pickup, date, description, email,donarimage,foodstatus}
+    
+            console.log(newFood);
+            fetch('http://localhost:5000/collection', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(newFood)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if(data.insertedId){
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Food Added Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Cool'
+                          })
+                    }
+                })
+        
+        
     }
     return (
         <div className="w-10/12 ml-10 mb-10 bg-amber-100">
@@ -63,7 +108,7 @@ const AddAFood = () => {
                         </label>
                     </div>
                 </div>
-                {/* form description and ratings row */}
+                {/* form description  row */}
                 <div className="md:flex mb-8">
                    
                    
@@ -77,14 +122,14 @@ const AddAFood = () => {
                     </div>
                     <div className="form-control md:w-1/2 ml-4">
                         <label className="label">
-                            <span className="label-text">Donar Name</span>
+                            <span className="label-text">Donar Image</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="name" placeholder="Your name"  className="input input-bordered w-full" />
+                            <input type="text" name="image" placeholder="Your image" value={user.photoURL} className="input input-bordered w-full" />
                         </label>
                     </div>
                 </div>
-                {/* pick up location */}
+                {/* name email */}
                 <div className="md:flex mb-8">
                 
                     <div className="form-control md:w-1/2">
@@ -92,7 +137,7 @@ const AddAFood = () => {
                             <span className="label-text">Name</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="name" placeholder="" className="input input-bordered w-full" />
+                            <input type="text" name="name" placeholder="name" value={user.displayName}  className="input input-bordered w-full" />
                         </label>
                     </div>
                     <div className="form-control md:w-1/2 ml-4">
@@ -100,7 +145,7 @@ const AddAFood = () => {
                             <span className="label-text">Email</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="email" placeholder="email"  className="input input-bordered w-full" />
+                            <input type="text" name="email" placeholder="email" value={user.email} className="input input-bordered w-full" />
                         </label>
                     </div>
                 </div>
