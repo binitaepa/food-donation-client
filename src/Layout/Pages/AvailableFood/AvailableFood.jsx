@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import AVailablefoodcard from "./AVailablefoodcard";
+import { useLoaderData } from "react-router-dom";
+import AddFoodShow from "../AddFoodShow";
 
 
 
 const AvailableFood = () => {
+  const  addedFood=useLoaderData();
+  
+
+
     const [feature,setFeature]=useState([]);
     useEffect(()=>{
         fetch('http://localhost:5000/feature')
@@ -26,6 +32,18 @@ const AvailableFood = () => {
            {
                 feature.map(feature=><AVailablefoodcard  key={feature._id} feature={feature}></AVailablefoodcard>)
             }
+           </div>
+           <div >
+            <h2 className="text-center mb-10 items-center text-4xl text-amber-400">Added Food</h2>
+            <div className="mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-10">
+            {
+                addedFood.map(food=><AddFoodShow key={food._id} food={food}></AddFoodShow>)
+            }
+                
+                
+            </div>
+                
+            
            </div>
             </div>
         </div>
