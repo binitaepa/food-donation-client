@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
 
 
 const FoodDetails = () => {
@@ -10,6 +12,37 @@ const FoodDetails = () => {
     const currentDate = new Date().toLocaleDateString();
      
     const foodDetail= foods.find(foodDetail=> foodDetail._id == id);
+    const handleAddFood = event =>{
+        event.preventDefault();
+
+        const form = event.target;
+        const notes = form.notes.value;
+        const money= form.money.value;
+      
+        const food = {
+            notes: notes,
+            money: money,
+        }
+
+      
+
+        fetch(`http://localhost:5000/feature/${foodDetail._id}`, {
+            method: 'PATCH', 
+            headers: {
+                'content-type': 'application/json'
+            }, 
+            body: JSON.stringify(food)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.modifiedCount ){
+                toast('Two data added successfully')
+            }
+        })
+
+    }
+
 
     return (
         <div className="mb-10 items-center flex justify-center flex-col gap-5">
@@ -29,7 +62,7 @@ const FoodDetails = () => {
 <button className="btn bg-amber-300" onClick={()=>document.getElementById('my_modal_5').showModal()}>Request</button>
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
-  <form >
+  <form onSubmit={handleAddFood}>
                 {/* form Photo url row */}
             <div className="mb-8">
                     <div className="form-control w-full">
@@ -159,6 +192,7 @@ const FoodDetails = () => {
   </div>
 </dialog>
                 </div>
+                <ToastContainer></ToastContainer>
         </div>
     );
 };
