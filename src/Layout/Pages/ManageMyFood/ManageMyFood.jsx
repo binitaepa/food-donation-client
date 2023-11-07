@@ -1,7 +1,8 @@
 import  { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { useTable } from "react-table";
+
 import FoodRow from "../FoodRow/FoodRow";
+import Swal from "sweetalert2";
 
 
 
@@ -31,32 +32,45 @@ const ManageMyFood = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ status: 'Available' })
+            body: JSON.stringify(foods)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 if (data.modifiedCount > 0) {
                     // update state
+                    
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Updated Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Cool'})
+
                     const remaining = foods.filter(booking => booking._id !== id);
                     const updated = foods.find(booking => booking._id === id);
-                    updated.status = 'Available'
+                    updated.foodstatus = 'Available'
                     const newFood = [updated, ...remaining];
                     setFoods(newFood);
                 }
             })
     }
     const handleDelete = id => {
-        const proceed = confirm('Are You sure you want to delete');
+        // const proceed = confirm('Are You sure you want to delete');
+         const proceed =confirm('Are you sure you want to delete?')
+            
         if (proceed) {
-            fetch(`http://localhost:5000/bookings/${id}`, {
+            fetch(`http://localhost:5000/collection/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
                     if (data.deletedCount > 0) {
-                        alert('deleted successful');
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Deleted Successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Cool'})
                         const remaining = foods.filter(booking => booking._id !== id);
                         setFoods(remaining);
                     }
